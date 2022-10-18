@@ -1,4 +1,4 @@
-def module(group: int, total: int) -> int:
+def module(group: int, total: int) -> list:
     return [i for i in range(1, total+1) if i%6 == group]
 
 

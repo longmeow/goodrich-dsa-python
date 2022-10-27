@@ -14,7 +14,7 @@ import logging
 import sys
 
 
-def brute_force_o3(data):
+def brute_force_o3(data: list[int]) -> None:
     '''
     Duyệt lần lượt qua toàn bộ các phần tử data,
     bắt đầu bằng phần tử bên trái cùng.
@@ -50,7 +50,7 @@ nếu có thể tận dụng lại thì sẽ không mất thêm 1 vòng lặp fo
 riêng cho việc tính tổng của từng subarray một'''
 
 
-def brute_force_o2(data):
+def brute_force_o2(data: list[int]) -> None:
     '''
     Duyệt lần lượt qua toàn bộ các phần tử data,
     bắt đầu bằng phần tử bên trái cùng.
@@ -85,7 +85,7 @@ def brute_force_o2(data):
     print(max_sum)
 
 
-def kadane(data):
+def kadane(data: list[int]) -> None:
     """
     Xét lần lượt từ trái qua phải, ta chia bài toán con được phát biểu như sau:
     "Tại mỗi idx, dãy con kết thúc tại đó có tổng lớn nhất là bao nhiêu?"
@@ -114,7 +114,7 @@ def kadane(data):
     print(max_so_far)
 
 
-def kadane_list(data):
+def kadane_list(data: list[int]) -> None:
     '''Modify kadane() to print out the list'''
     
     max_so_far = data[0]

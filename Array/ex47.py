@@ -12,7 +12,7 @@ cho số âm có abs nhỏ nhất.
 '''
 
 
-def find_max_product(nums):
+def find_max_product(nums: list[int]) -> int:
     n = len(nums)
     # Base case
     if n == 0:

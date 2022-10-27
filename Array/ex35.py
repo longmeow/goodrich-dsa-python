@@ -14,7 +14,7 @@ và righmost trùng nhau.
 '''
 
 
-def trap(heights):
+def trap(heights: list[int]) -> int:
     left = 0
     right = len(heights)-1
     water = 0

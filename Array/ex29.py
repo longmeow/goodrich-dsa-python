@@ -18,7 +18,7 @@ và stop_idx = current_cell
 import sys
 
 
-def find_subarray_with_given_sum(data, given_sum):
+def find_subarray_with_given_sum(data: list[int], given_sum: int) -> None:
     sum_tracking = {}
     sum_so_far = 0
     # Trong trường hợp array cần tìm start tại idx = 0

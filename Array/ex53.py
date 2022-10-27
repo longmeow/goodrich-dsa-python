@@ -10,7 +10,7 @@ which appear an odd number of times. Find both odd appearing elements without us
 '''
 
 
-def find_odd_occuring(nums):
+def find_odd_occuring(nums: list[int]) -> list:
     count_dict = {i: 0 for i in nums}
     for num in nums:
         if num in count_dict:

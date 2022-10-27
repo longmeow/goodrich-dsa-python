@@ -30,7 +30,7 @@ Dễ thấy: m = n(n-1)/2, hay n^2-n-2m = 0 -> n = (1+sqrt(8m+1))/2. Từ đề 
 from math import sqrt
 
 
-def decode(inp):
+def decode(inp: list[int]) -> None:
     m = len(inp)
     n = int((sqrt(8 * m + 1) + 1) / 2)
     A = [0] * n

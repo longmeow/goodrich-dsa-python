@@ -154,7 +154,7 @@ def main():
 
     if args.mode is not None and args.complexity is not None:
         if args.mode == 'test':
-            data = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+            data = [1, -3, 9, 7, -8, 6, 10, 101, -200, -21, 67, 58, 31, -50, -1000, 10, 3, 1, 9, -9]
         elif args.mode == 'mesure':
             data = list(range(-500,500))
     else:

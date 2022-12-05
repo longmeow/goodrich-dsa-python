@@ -1,51 +1,64 @@
 #include <iostream>
 #include <string>
 using namespace std;
-//tao cau truc sinh vien
-struct SinhVien
-{
+
+struct Ngay{
+    int ngay, thang, nam ;
+};
+struct SinhVien{
     int ma;
+    Ngay ngay_sinh;
     string ten;
+    string gioi_tinh;
+    string dia_chi;
+    string lop;
+    string khoa;
 };
-//tao cau truc danh sach lien ket don
-struct Node
-{
+
+struct Node{
     SinhVien *data;
-    Node *pNext;
+    Node *link;
 };
-struct SingleList
-{
-    Node *pHead;
+struct SingleList{
+    Node *first;
 };
-//khoi tao danh sach lien ket don
-void Initialize(SingleList *&list)
-{
-    list=new SingleList;
-    list->pHead=NULL;
+//khoi tao danh sach 
+void Initialize(SingleList *&list){
+    list = new SingleList;
+    list->first = NULL;
 }
 //nhap thong tin sinh vien
 SinhVien *NhapSinhVien()
 {
-    SinhVien *sv=new SinhVien;
-    cout<<"Nhap MSSV: ";
-    cin>>sv->ma;
+    SinhVien *sv = new SinhVien;
+    cout<<"Nhap MSSV: "; cin>>sv->ma;
+    cout << "Nhap ngay, thang, nam sinh : " ; 
+    cin >> sv->ngay_sinh.ngay >> sv->ngay_sinh.thang >> sv->ngay_sinh.nam;
+
     cin.ignore();
-    cout<<"Nhap ho va ten: ";
-    getline(cin,sv->ten);
+    cout<<"Nhap ho va ten: "; getline(cin,sv->ten);
+
+    cout<<"Nhap gioi tinh: "; getline(cin,sv->gioi_tinh);
+
+    cout<<"Nhap lop: "; getline(cin,sv->lop);
+
+    cout<<"Nhap khoa: "; getline(cin,sv->khoa);
+
+    cout<<"Nhap dia chi: "; getline(cin,sv->dia_chi);
     return sv;
 }
 //tao node sinh vien
 Node *CreateNode(SinhVien *sv)
 {
-    Node *pNode=new Node;
+    Node *pNode = new Node;
     if(pNode!=NULL)
     {
         pNode->data=sv;
-        pNode->pNext=NULL;
+        pNode->link=NULL;
     }
     else
     {
-        cout<<"cap phat bo nho that bai!!!";
+        cout<<"Update fail";
     }
     return pNode;
 }
@@ -53,56 +66,81 @@ Node *CreateNode(SinhVien *sv)
 void InsertLast(SingleList *&list,SinhVien *sv)
 {
     Node *pNode=CreateNode(sv);
-    if(list->pHead==NULL)
+    if(list->first==NULL)
     {
-        list->pHead=pNode;
+        list->first=pNode;
     }
     else
     {
-        Node *pTmp=list->pHead;
+        Node *temp=list->first;
          
-        while(pTmp->pNext!=NULL)
+        while(temp->link!=NULL)
         {
-            pTmp=pTmp->pNext;
+            temp=temp->link;
         }
-        pTmp->pNext=pNode;
+        temp->link=pNode;
     }
 }
 //hien thi danh sach
 void PrintList(SingleList *list)
 {
-    Node *pTmp=list->pHead;
-    if(pTmp==NULL)
+    Node *temp = list->first;
+    if(temp==NULL)
     {
         cout<<"Danh sach rong";
         return;
     }
-    while(pTmp!=NULL)
+    while(temp!=NULL)
     {
-        SinhVien *sv=pTmp->data;
-        cout<<sv->ma<<"\t"<<sv->ten<<"\n";
-        pTmp=pTmp->pNext;
+        SinhVien *sv=temp->data;
+        cout<<sv->ma<<"\t"<<sv->ten<<endl;
+        temp=temp->link;
     }
 }
 //sap xep
 void SortList(SingleList *&list)
 {
-    for(Node *pTmp=list->pHead;pTmp!=NULL;pTmp=pTmp->pNext)
+    for(Node *temp=list->first;temp!=NULL;temp=temp->link)
     {
-        for(Node *pTmp2=pTmp->pNext;pTmp2!=NULL;pTmp2=pTmp2->pNext)
+        for(Node *temp2=temp->link;temp2!=NULL;temp2=temp2->link)
         {   
-            SinhVien *svTmp=pTmp->data;
-            SinhVien *svTmp2=pTmp2->data;
+            SinhVien *svTmp=temp->data;
+            SinhVien *svTmp2=temp2->data;
             if(svTmp2->ma<svTmp->ma)
             {
-                int ma=svTmp->ma;
-                string ten;
-                ten= svTmp->ten;
+                int ma = svTmp->ma;
+                int ngay, thang, nam;
+                ngay = svTmp->ngay_sinh.ngay;
+                thang = svTmp->ngay_sinh.thang;
+                nam = svTmp->ngay_sinh.nam;
+
+                string ten; ten = svTmp->ten;
+                string lop; lop = svTmp->lop;
+                string khoa; khoa = svTmp->khoa;
+                string dia_chi; dia_chi = svTmp->dia_chi;
+                string gioi_tinh; gioi_tinh = svTmp->gioi_tinh;
+
                  
-                svTmp->ma=svTmp2->ma;
-                svTmp->ten=svTmp2->ten;
+                svTmp->ma = svTmp2->ma;
+                svTmp->ten = svTmp2->ten;
+                svTmp->ngay_sinh.ngay = svTmp2->ngay_sinh.ngay;
+                svTmp->ngay_sinh.thang = svTmp2->ngay_sinh.thang;
+                svTmp->ngay_sinh.nam = svTmp2->ngay_sinh.nam;
+                svTmp->lop = svTmp2->lop;
+                svTmp->khoa = svTmp2->khoa;
+                svTmp->dia_chi = svTmp2->dia_chi;
+                svTmp->gioi_tinh = svTmp2->gioi_tinh;
+
                 svTmp2->ma=ma;
-                svTmp2->ten=ten;             
+                svTmp2->ten=ten;  
+                svTmp2->ngay_sinh.ngay=ngay;
+                svTmp2->ngay_sinh.thang=thang;
+                svTmp2->ngay_sinh.nam=nam;
+                svTmp2->lop=lop;
+                svTmp2->khoa=khoa;
+                svTmp2->dia_chi=dia_chi;
+                svTmp2->gioi_tinh=gioi_tinh;
+                          
             }
         }   
     }
@@ -110,7 +148,7 @@ void SortList(SingleList *&list)
 //xoa
 void RemoveNode(SingleList *&list,int ma)
 {
-    Node *pDel=list->pHead;
+    Node *pDel=list->first;
     if(pDel==NULL)
     {
         cout<<"Danh sach rong!";
@@ -124,7 +162,7 @@ void RemoveNode(SingleList *&list,int ma)
             if(sv->ma==ma)
                 break;
             pPre=pDel;
-            pDel=pDel->pNext;
+            pDel=pDel->link;
         }
         if(pDel==NULL)
         {
@@ -132,17 +170,17 @@ void RemoveNode(SingleList *&list,int ma)
         }
         else
         {
-            if(pDel==list->pHead)
+            if(pDel==list->first)
             {
-                list->pHead=list->pHead->pNext;
-                pDel->pNext=NULL;
+                list->first=list->first->link;
+                pDel->link=NULL;
                 delete pDel;
                 pDel=NULL;
             }
             else
             {
-                pPre->pNext=pDel->pNext;
-                pDel->pNext=NULL;
+                pPre->link=pDel->link;
+                pDel->link=NULL;
                 delete pDel;
                 pDel=NULL;
             }
@@ -152,19 +190,25 @@ void RemoveNode(SingleList *&list,int ma)
 int main() {
     SingleList *list;
     Initialize(list);
-    SinhVien *teo=NhapSinhVien();
-    InsertLast(list,teo);
-    SinhVien *ty=NhapSinhVien();
-    InsertLast(list,ty);
-    SinhVien *bin=NhapSinhVien();
-    InsertLast(list,bin);
+    // SinhVien *teo=NhapSinhVien();
+    // InsertLast(list,teo);
+    // SinhVien *ty=NhapSinhVien();
+    // InsertLast(list,ty);
+    // SinhVien *bin=NhapSinhVien();
+    // InsertLast(list,bin);
+    do{
+        SinhVien *sv = NhapSinhVien();
+        InsertLast(list,sv);
+        cout << "Nhap 1 de tiep tuc ; 0 de ket thuc : " ;
+        bool check; cin >> check; 
+        if(check == 0 ) break;
+    }while(true);
     PrintList(list);
     SortList(list);
     cout<<"\nSau khi sap xep:\n";
     PrintList(list);
     cout<<"\nBan muon xoa sinh vien co MSSV: ";
-    int ma;
-    cin>>ma;
+    int ma; cin>>ma;
     RemoveNode(list,ma);
     cout<<"\nSau khi xoa:\n";
     PrintList(list);

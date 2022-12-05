@@ -190,12 +190,7 @@ void RemoveNode(SingleList *&list,int ma)
 int main() {
     SingleList *list;
     Initialize(list);
-    // SinhVien *teo=NhapSinhVien();
-    // InsertLast(list,teo);
-    // SinhVien *ty=NhapSinhVien();
-    // InsertLast(list,ty);
-    // SinhVien *bin=NhapSinhVien();
-    // InsertLast(list,bin);
+
     do{
         SinhVien *sv = NhapSinhVien();
         InsertLast(list,sv);
